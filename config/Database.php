@@ -26,7 +26,7 @@ class Database
         $this->username = 'root';
 
         try {
-            $this->pdo = new PDO('mysql:host=' . $this->host . '.dbname=' . $this->db_name . 'charset=UTF8;', $this->username, $this->password);
+            $this->pdo = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->db_name . ';charset=UTF8;', $this->username, $this->password);
         } catch (Exception $ex) {
             $message = 'Erreur P.D.O dans ' . $ex->getFile() . ' ligne ' . $ex->getLine() . ' : ' . $ex->getMessage();
             die($message);
@@ -49,6 +49,6 @@ class Database
      */
     public function __destruct()
     {
-        $this->conn = null;
+        $this->pdo = null;
     }
 }

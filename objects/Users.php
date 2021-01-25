@@ -36,15 +36,16 @@ class Users
         $this->pdo = $database->pdo;
     }
 
+    /**
+     * Lecture des données de la table eter_user
+     * @return false|PDOStatement
+     */
     public function getAllUsers() {
 
         $query = 'SELECT * FROM `eter_user`';
-        $users = $this->pdo->query($query);
-//        $users->execute();
-        var_dump($users);
-        $result = $users->fetchAll(PDO::FETCH_OBJ);
-        var_dump($result);
-        return $result;
+        $users = $this->pdo->prepare($query);
+        $users->execute();
+        return $users;
     }
 
 }
