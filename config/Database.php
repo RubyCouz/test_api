@@ -22,7 +22,7 @@ class Database
     {
         $this->host = '127.0.0.1:3306';
         $this->db_name = 'eterelzfbx877';
-        $this->password = '';
+        $this->password = 'root';
         $this->username = 'root';
 
         try {

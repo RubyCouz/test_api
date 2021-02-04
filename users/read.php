@@ -1,54 +1,48 @@
 <?php
-// déclaration des headers
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json; charset=UTF-8');
+// header pour requête
+//header('Access-Control-Allow-Origin: *');
+//header('Content-Type: application/json; charset=UTF-8');
 
-// inclusion de la base de données et classe Users
-include_once '../config/Database.php';
+// inclusion de la connexion à la bdd et de la classe Users
+include_once '../config/database.php';
 include_once '../objects/Users.php';
-// instanciation de la classe Database
+
 $database = new Database();
-// connexion à la base de données
 $db = $database->getInstance();
 
 // instanciation de la classe Users
 $users = new Users();
-// appel de la méthode getAllUsers (lecture de tous les données de la table eter_user) de la classe Users
+
 $stmt = $users->getAllUsers();
-// comptage du nombre d'entrée dans le retour de la méthode getAllUsers
-$num = $stmt->rowCount();
-// si le nombre d'entrée est supérieur à 0
-if ($num > 0) {
-    // définitions des tableaux qui vont servir à l'établissement du JSON
-    $arrayUsers = [];
-    $arrayUsers['records'] = [];
-// boucle pour lire les résultats
+$usersNumbers = $stmt->rowCount();
+
+if ($usersNumbers > 0) {
+    // déclaration des tableaux qui vont contenir le JSON
+    $users_arr = [];
+    $users_arr['records'] = [];
+
     while ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
+        var_dump($row);
         foreach ($row as $user) {
-            // création de variables dont les noms sont les index de ce tableau, et affection de la valeur associée
+            var_dump($user);
+            // création de variables à l'aide des clés du tableau associatif obtenu lors de la requête vers la bdd
             extract($user);
-            // stockage des variables récupérées dans un tableau associatif
-            $usersItems = [
+            $users_item = array(
                 'id' => $id,
-                'login' => $user_login,
-            ];
-            // stockage dans le tableau défini plus haut
-            array_push($arrayUsers['records'], $usersItems);
+                'user_login' => $user_login,
+            );
         }
 
+        // envoie vers le tableau destiné à contenir le JSON
+        array_push($users_arr['records'], $users_item);
     }
-    // définition d'un code de réponse (200 => ok)
+    // définition d'un code 200 => requête effectué et résultat trouvé
     http_response_code(200);
-    // affichage du JSON
-    echo json_encode($arrayUsers);
+    // envoie de la réponse en JSON
+    echo json_encode($users_arr);
 } else {
-    // Si pas d'entrée dans le retour de la methode getAllUsers, défintion d'un code d'erreur (404 => données introuvables)
+    // si pas de résultat, définition d'un code d'erreur 404
     http_response_code(404);
-    // définition d'un tableau associatif d'erreur
-    echo json_encode(array(
-            'message' => 'Aucun utilisateur trouvé.'
-        )
-    );
+    // stockage d'un message d'erreur dans un tableau associatif
+    echo json_encode(array('message' => 'Aucun utilisateur dans la base'));
 }
-
-
