@@ -22,24 +22,23 @@ if ($usersNumbers > 0) {
     $users_arr['records'] = [];
 
     while ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
-        var_dump($row);
         foreach ($row as $user) {
-            var_dump($user);
             // création de variables à l'aide des clés du tableau associatif obtenu lors de la requête vers la bdd
             extract($user);
             $users_item = array(
                 'id' => $id,
                 'user_login' => $user_login,
             );
+            // envoie vers le tableau destiné à contenir le JSON
+            array_push($users_arr['records'], $users_item);
         }
 
-        // envoie vers le tableau destiné à contenir le JSON
-        array_push($users_arr['records'], $users_item);
+var_dump($users_arr);
     }
     // définition d'un code 200 => requête effectué et résultat trouvé
     http_response_code(200);
     // envoie de la réponse en JSON
-    echo json_encode($users_arr);
+    return $users_arr;
 } else {
     // si pas de résultat, définition d'un code d'erreur 404
     http_response_code(404);

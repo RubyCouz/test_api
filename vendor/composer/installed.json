@@ -1,14 +1,9 @@
 {
-    "_readme": [
-        "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-        "This file is @generated automatically"
-    ],
-    "content-hash": "2a4562a6c3f6f334c16e110672128b8b",
     "packages": [
         {
             "name": "webonyx/graphql-php",
             "version": "v14.5.0",
+            "version_normalized": "14.5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webonyx/graphql-php.git",
@@ -44,7 +39,9 @@
                 "psr/http-message": "To use standard GraphQL server",
                 "react/promise": "To leverage async resolving on React PHP platform"
             },
+            "time": "2021-01-23T12:52:35+00:00",
             "type": "library",
+            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "GraphQL\\": "src/"
@@ -70,19 +67,9 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2021-01-23T12:52:35+00:00"
+            "install-path": "../webonyx/graphql-php"
         }
     ],
-    "packages-dev": [],
-    "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
-    "prefer-stable": false,
-    "prefer-lowest": false,
-    "platform": {
-        "ext-pdo": "*",
-        "ext-json": "*"
-    },
-    "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "dev": true,
+    "dev-package-names": []
 }
