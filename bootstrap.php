@@ -11,11 +11,14 @@ $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $i
 $conn = array(
     'driver' => 'pdo_mysql',
     'user'     => 'root',
-    'password' => '',
+    'password' => 'root',
     'dbname' => 'eterelzfbx877',
     'port' => '3306',
     'host' => 'localhost',
 );
 
 // obtaining the entity manager
-$entityManager = \Doctrine\ORM\EntityManager::create($conn, $config);
+try {
+    $entityManager = \Doctrine\ORM\EntityManager::create($conn, $config);
+} catch (\Doctrine\ORM\ORMException $e) {
+}
