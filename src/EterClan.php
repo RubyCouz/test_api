@@ -21,7 +21,7 @@ class EterClan
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $clan_id;
+    private $id;
 
     /**
      * @var string
@@ -79,21 +79,28 @@ class EterClan
 
     /**
      * @ORM\ManyToMany(targetEntity="EterGame", mappedBy="game_clan")
+     * @ORM\JoinTable(name="clan_game",
+     * joinColumns={@ORM\JoinColumn(name="clan_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="game_id", referencedColumnName="id")}
+     *     )
      */
     private $games;
 
     /**
      * @ORM\ManyToMany(targetEntity="EterEvent", inversedBy="clan")
      * @ORM\JoinTable(name="clan_event",
-     * joinColumns={@ORM\JoinColumn(name="clan_id", referencedColumnName="clan_id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="event_id", referencedColumnName="event_id")}
+     * joinColumns={@ORM\JoinColumn(name="clan_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="event_id", referencedColumnName="id")}
      * )
      */
     private ArrayCollection $event;
 
     /**
      * @ORM\ManyToMany(targetEntity="EterGameplay", inversedBy="clan")
-     * @ORM\JoinTable(name="clan_gameplay")
+     * @ORM\JoinTable(name="clan_gameplay",
+     * joinColumns={@ORM\JoinColumn(name="clan_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="gameplay_id", referencedColumnName="id")}
+     *     )
      */
     private ArrayCollection $gameplay;
 

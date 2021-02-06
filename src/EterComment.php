@@ -20,7 +20,7 @@ class EterComment
      * @ORM\Column(type="integer")
      * @var int
      */
-    private $com_id;
+    private $id;
 
     /**
      * @ORM\Column(type="string")
@@ -30,7 +30,7 @@ class EterComment
 
     /**
      * @ORM\ManyToOne(targetEntity="EterComment", inversedBy="com_children")
-     * @ORM\JoinColumn(name="com_id", referencedColumnName="com_id")
+     * @ORM\JoinColumn(name="com_id", referencedColumnName="id")
      */
     private $com_parent;
 
@@ -41,13 +41,13 @@ class EterComment
 
     /**
      * @ORM\ManyToOne(targetEntity="EterUsers", inversedBy="comment")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="EterContent", inversedBy="comment")
-     * @ORM\JoinColumn(name="content_id", referencedColumnName="content_id")
+     * @ORM\JoinColumn(name="content_id", referencedColumnName="id")
      */
     private $content;
 

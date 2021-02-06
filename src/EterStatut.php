@@ -20,7 +20,7 @@ class EterStatut
      * @ORM\GeneratedValue
      * @var int
      */
-    private $statut_id;
+    private $id;
 
     /**
      * @ORM\Column(type="string")

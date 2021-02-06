@@ -22,7 +22,7 @@ class EterGame
      * @ORM\Column(type="integer")
      * @var int
      */
-    private $game_id;
+    private $id;
 
     /**
      * @ORM\Column(type="string")
@@ -56,32 +56,37 @@ class EterGame
 
     /**
      * @ORM\ManyToMany(targetEntity="EterGender", inversedBy="games")
-     * @ORM\JoinTable(name="game_gender")
+     * @ORM\JoinTable(name="game_gender",
+     * joinColumns={@ORM\JoinColumn(name="game_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="gender_id", referencedColumnName="id")})
      */
     private $game_gender;
 
     /**
      * @ORM\ManyToMany(targetEntity="EterPlateform", inversedBy="games")
-     * @ORM\JoinTable(name="game_plateform")
+     * @ORM\JoinTable(name="game_plateform",
+     * joinColumns={@ORM\JoinColumn(name="game_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="plateform_id", referencedColumnName="id")}
+     *     )
      */
     private ArrayCollection $game_plateform;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="EterClan", inversedBy="games")
-     * @ORM\JoinTable(name="game_clan")
-     */
-    private ArrayCollection $game_clan;
+//    /**
+//     * @ORM\ManyToMany(targetEntity="EterClan", inversedBy="games")
+//     * @ORM\JoinTable(name="game_clan")
+//     */
+//    private ArrayCollection $game_clan;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="EterUsers", mappedBy="user_game")
-     */
-    private ArrayCollection $users;
+//    /**
+//     * @ORM\ManyToMany(targetEntity="EterUsers", mappedBy="user_game")
+//     */
+//    private ArrayCollection $users;
 
     public function __construct(array $data)
     {
         $this->game_plateform = new ArrayCollection();
-        $this->game_clan = new ArrayCollection();
-        $this->users = new ArrayCollection();
+//        $this->game_clan = new ArrayCollection();
+//        $this->users = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

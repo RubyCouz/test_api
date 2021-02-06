@@ -18,7 +18,7 @@ class EterUsers
      * @ORM\GeneratedValue
      * @var int
      */
-    private $user_id;
+    private $id;
 
     /**
      * @ORM\Column(type="string")
@@ -102,18 +102,25 @@ class EterUsers
 
     /**
      * @ORM\ManyToMany(targetEntity="EterLabel", inversedBy="users")
-     * @ORM\JoinTable(name="users_label")
+     * @ORM\JoinTable(name="users_label",
+     * joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="label_id", referencedColumnName="id")})
      */
     private ArrayCollection $user_label;
 
     /**
      * @ORM\ManyToMany(targetEntity="EterGame", inversedBy="users")
-     * @ORM\JoinTable(name="users-game")
+     * @ORM\JoinTable(name="users_game",
+     * joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="game_id", referencedColumnName="id")})
      */
     private ArrayCollection $user_game;
 
     /**
      * @ORM\ManyToMany(targetEntity="EterStreamSupport", inversedBy="users")
+     * @ORM\JoinTable(name="users_stream",
+     * joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="support_id", referencedColumnName="id")})
      */
     private ArrayCollection $user_stream;
 

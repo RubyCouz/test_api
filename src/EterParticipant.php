@@ -20,7 +20,7 @@ class EterParticipant
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $part_id;
+    private $id;
 
     /**
      * @var DateTime
@@ -30,25 +30,25 @@ class EterParticipant
 
     /**
      * @var bool
-     * @ORM\Column("type=boolean")
+     * @ORM\Column(type="boolean")
      */
     private $part_winner;
 
     /**
      * @ORM\ManyToOne(targetEntity="EterUsers", inversedBy="participant")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="EterEvent", inversedBy="participant")
-     * @ORM\JoinColumn(name="event_id", referencedColumnName="event_id")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
      */
     private $event;
 
     /**
      * @@ORM\ManyToOne(targetEntity="EterFunction", inversedBy="participant")
-     * @ORM\JoinColumn(name="function_id", referencedColumnName="function_id")
+     * @ORM\JoinColumn(name="function_id", referencedColumnName="id")
      */
     private $function;
 

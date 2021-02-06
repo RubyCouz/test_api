@@ -8,7 +8,7 @@ use GraphQL\Utils\Utils;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="eter_categorie")
+ * @ORM\Table(name="eter_Categorie")
  * Class EterCategorie
  * @package data
  */
@@ -20,7 +20,7 @@ class EterCategorie
      * @ORM\Column(type="integer")
      * @var int
      */
-    private $cat_id;
+    private $id;
 
     /**
      * @ORM\Column(type="string")
@@ -30,7 +30,7 @@ class EterCategorie
 
     /**
      * @ORM\ManyToOne(targetEntity="EterCategorie", inversedBy="cat_children")
-     * @ORM\JoinColumn(name="cat_id", referencedColumnName="cat_id")
+     * @ORM\JoinColumn(name="cat_id", referencedColumnName="id")
      */
     private $cat_parent;
 

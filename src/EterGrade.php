@@ -20,7 +20,7 @@ class EterGrade
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $grade_id;
+    private $id;
 
     /**
      * @var string

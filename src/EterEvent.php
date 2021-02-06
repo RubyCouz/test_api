@@ -21,7 +21,7 @@ class EterEvent
      * @ORM\Column(type="integer")
      * @var int
      */
-    private $event_id;
+    private $id;
 
     /**
      * @ORM\Column(type="string")

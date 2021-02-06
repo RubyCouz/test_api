@@ -17,10 +17,10 @@ class EterFunction
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column (type="eter_function")
+     * @ORM\Column (type="integer")
      * @var int
      */
-    private $function_id;
+    private $id;
 
     /**
      * @ORM\Column(type="string")

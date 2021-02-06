@@ -20,7 +20,7 @@ class EterContent
      * @ORM\GeneratedValue
      * @var int
      */
-    private $content_id;
+    private $id;
 
     /**
      * @ORM\Column(type="string")
@@ -59,19 +59,19 @@ class EterContent
 
     /**
      * @ORM\ManyToOne(targetEntity="EterUsers", inversedBy="content")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="EterCategorie", inversedBy="content")
-     * @ORM\JoinColumn(name="cat_id", referencedColumnName="cat_id")
+     * @ORM\JoinColumn(name="cat_id", referencedColumnName="id")
      */
     private $cat;
 
     /**
      * @ORM\ManyToOne(targetEntity="EterStatut", inversedBy="")
-     * @ORM\JoinColumn(name="statut_id", referencedColumnName="statut_id")
+     * @ORM\JoinColumn(name="statut_id", referencedColumnName="id")
      */
     private $statut;
 

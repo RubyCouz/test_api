@@ -19,7 +19,7 @@ class EterGameplay
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $gameplay_id;
+    private $id;
 
     /**
      * @var string
@@ -27,14 +27,14 @@ class EterGameplay
      */
     private $gameplay_type;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="EterClan", mappedBy="gameplay")
-     */
-    private ArrayCollection $clan;
+//    /**
+//     * @ORM\ManyToMany(targetEntity="EterClan", mappedBy="gameplay")
+//     */
+//    private ArrayCollection $clan;
 
     public function __construct(array $data)
     {
-        $this->clan = new ArrayCollection();
+//        $this->clan = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

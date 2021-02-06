@@ -21,7 +21,7 @@ class EterPlateform
      * @ORM\Column(type="integer")
      * @var int
      */
-    private $plateform_id;
+    private $id;
 
     /**
      * @ORM\Column(type="string")
@@ -29,14 +29,14 @@ class EterPlateform
      */
     private $plateform_name;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="EterGame", mappedBy="game_plateform")
-     */
-    private ArrayCollection $games;
+//    /**
+//     * @ORM\ManyToMany(targetEntity="EterGame", mappedBy="game_plateform")
+//     */
+//    private ArrayCollection $games;
 
     public function __construct(array $data)
     {
-        $this->games = new ArrayCollection();
+//        $this->games = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

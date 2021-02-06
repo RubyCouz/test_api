@@ -20,7 +20,7 @@ class EterMember
      * @ORM\Column(type="integer")
      * @var int
      */
-    private $member_id;
+    private $id;
 
     /**
      * @ORM\Column(type="datetime")
@@ -30,19 +30,19 @@ class EterMember
 
     /**
      * @ORM\ManyToOne(targetEntity="EterUsers", inversedBy="member")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="EterGrade", inversedBy="member")
-     * @ORM\JoinColumn(name="grade_id", referencedColumnName="grade_id")
+     * @ORM\JoinColumn(name="grade_id", referencedColumnName="id")
      */
     private $grade;
 
     /**
      * @ORM\ManyToOne(targetEntity="EterClan", inversedBy="member")
-     * @ORM\JoinColumn(name="clan_id", referencedColumnName="clan_id")
+     * @ORM\JoinColumn(name="clan_id", referencedColumnName="id")
      */
     private $clan;
 

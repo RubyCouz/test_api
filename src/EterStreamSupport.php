@@ -19,7 +19,7 @@ class EterStreamSupport
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $support_id;
+    private $id;
 
     /**
      * @var string
@@ -27,14 +27,14 @@ class EterStreamSupport
      */
     private $support_name;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="EterUSers", mappedBy="user_stream")
-     */
-    private ArrayCollection $users;
+//    /**
+//     * @ORM\ManyToMany(targetEntity="EterUSers", mappedBy="user_stream")
+//     */
+//    private ArrayCollection $users;
 
     public function __construct(array $data)
     {
-        $this->users = new ArrayCollection();
+//        $this->users = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

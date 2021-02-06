@@ -10,6 +10,7 @@ use GraphQL\Utils\Utils;
  * Class EterLabel
  * @package data
  * @ORM\Table(name="eter_label")
+ * @ORM\Entity
  */
 class EterLabel
 {
@@ -19,7 +20,7 @@ class EterLabel
      * @ORM\GeneratedValue
      * @var int
      */
-    private $label_id;
+    private $id;
 
     /**
      * @ORM\Column(type="string")
@@ -27,14 +28,14 @@ class EterLabel
      */
     private $label_name;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="EterUser", mappedBy="user_label")
-     */
-    private ArrayCollection $users;
+//    /**
+//     * @ORM\ManyToMany(targetEntity="EterUsers", mappedBy="user_label")
+//     */
+//    private ArrayCollection $users;
 
     public function __construct(array $data)
     {
-        $this->users = new ArrayCollection();
+//        $this->users = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }
