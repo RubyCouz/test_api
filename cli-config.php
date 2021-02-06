@@ -1,9 +1,12 @@
 <?php
 // cli-config.php
+use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
+use Symfony\Component\Console\Helper\HelperSet;
+
 require_once "bootstrap.php";
 
-$helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
-    'em' => new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($entityManager)
+$helperSet = new HelperSet(array(
+    'em' => new EntityManagerHelper($entityManager)
 ));
 
 return $helperSet;

@@ -1,4 +1,6 @@
 <?php
+
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
 
 require_once "vendor/autoload.php";
@@ -12,13 +14,10 @@ $conn = array(
     'driver' => 'pdo_mysql',
     'user'     => 'root',
     'password' => 'root',
-    'dbname' => 'eterelzfbx877',
+    'dbname' => 'eterelz',
     'port' => '3306',
     'host' => 'localhost',
 );
 
 // obtaining the entity manager
-try {
-    $entityManager = \Doctrine\ORM\EntityManager::create($conn, $config);
-} catch (\Doctrine\ORM\ORMException $e) {
-}
+    $entityManager = EntityManager::create($conn, $config);
