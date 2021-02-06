@@ -4,6 +4,7 @@
 namespace data;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
@@ -50,10 +51,11 @@ class EterEvent
     /**
      * @ORM\ManyToMany(targetEntity="EterClan", mappedBy="event")
      */
-    private $clan;
+    private ArrayCollection $clan;
 
     public function __construct(array $data)
     {
+        $this->clan = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

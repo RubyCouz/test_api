@@ -5,6 +5,7 @@ namespace data;
 
 use Cassandra\Date;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
@@ -87,16 +88,18 @@ class EterClan
      * @ORM\ManyToMany(targetEntity="EterEvent", inversedBy="clan")
      * @ORM\JoinTable(name="clan_event")
      */
-    private $event;
+    private ArrayCollection $event;
 
     /**
      * @ORM\ManyToMany(targetEntity="EterGameplay", inversedBy="clan")
      * @ORM\JoinTable(name="clan_gameplay")
      */
-    private $gameplay;
+    private ArrayCollection $gameplay;
 
     public function __construct(array $data)
     {
+        $this->gameplay = new ArrayCollection();
+        $this->event = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

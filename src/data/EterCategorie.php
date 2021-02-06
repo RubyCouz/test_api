@@ -3,6 +3,7 @@
 
 namespace data;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
@@ -28,8 +29,20 @@ class EterCategorie
      */
     private $cat_name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="EterCategorie", inversedBy="cat_children")
+     * @ORM\JoinColumn(name="cat_id", referencedColumnName="cat_id")
+     */
+    private $cat_parent;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EterCategorie", mappedBy="cat_parent")
+     */
+    private ArrayCollection $cat_children;
+
     public function __construct(array $data)
     {
+        $this->cat_children = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

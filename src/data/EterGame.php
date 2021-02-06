@@ -4,6 +4,7 @@
 namespace data;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
@@ -70,15 +71,18 @@ class EterGame
      * @ORM\ManyToMany(targetEntity="EterClan", inversedBy="games")
      * @ORM\JoinTable(name="game_clan")
      */
-    private $game_clan;
+    private ArrayCollection $game_clan;
 
     /**
      * @ORM\ManyToMany(targetEntity="EterUsers", mappedBy="user_game")
      */
-    private $users;
+    private ArrayCollection $users;
 
     public function __construct(array $data)
     {
+        $this->game_plateform = new ArrayCollection();
+        $this->game_clan = new ArrayCollection();
+        $this->users = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

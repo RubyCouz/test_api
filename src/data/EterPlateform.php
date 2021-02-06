@@ -3,6 +3,7 @@
 
 namespace data;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
@@ -31,10 +32,11 @@ class EterPlateform
     /**
      * @ORM\ManyToMany(targetEntity="EterGame", mappedBy="game_plateform")
      */
-    private $games;
+    private ArrayCollection $games;
 
     public function __construct(array $data)
     {
+        $this->games = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

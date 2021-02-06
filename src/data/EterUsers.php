@@ -3,6 +3,7 @@
 namespace data;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
@@ -109,21 +110,24 @@ class EterUsers
      * @ORM\ManyToMany(targetEntity="EterLabel", inversedBy="users")
      * @ORM\JoinTable(name="users_label")
      */
-    private $user_label;
+    private ArrayCollection $user_label;
 
     /**
      * @ORM\ManyToMany(targetEntity="EterGame", inversedBy="users")
      * @ORM\JoinTable(name="users-game")
      */
-    private $user_game;
+    private ArrayCollection $user_game;
 
     /**
      * @ORM\ManyToMany(targetEntity="EterStreamSuppot", inversedBy="users")
      */
-    private $user_stream;
+    private ArrayCollection $user_stream;
 
     public function __construct(array $data)
     {
+        $this->user_stream = new ArrayCollection();
+        $this->user_game = new ArrayCollection();
+        $this->user_label = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

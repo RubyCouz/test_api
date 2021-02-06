@@ -3,6 +3,7 @@
 
 namespace data;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
@@ -31,10 +32,11 @@ class EterStreamSupport
     /**
      * @ORM\ManyToMany(targetEntity="EterUSers", mappedBy="user_stream")
      */
-    private $users;
+    private ArrayCollection $users;
 
     public function __construct(array $data)
     {
+        $this->users = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

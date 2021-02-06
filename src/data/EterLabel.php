@@ -3,6 +3,7 @@
 
 namespace data;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
@@ -30,10 +31,11 @@ class EterLabel
     /**
      * @ORM\ManyToMany(targetEntity="EterUser", mappedBy="user_label")
      */
-    private $users;
+    private ArrayCollection $users;
 
     public function __construct(array $data)
     {
+        $this->users = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }
