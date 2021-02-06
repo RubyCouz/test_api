@@ -1,19 +1,13 @@
 <?php
 
-namespace data;
 
-use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
 /**
- * @UniqueEntity(
- *    fields = {"user_mail"},
- *    message = "L'email existe déjà"
- * )
  * @ORM\Entity
- * @ORM\Table(name="eter_users)
+ * @ORM\Table(name="eter_users")
  * Class EterUsers
  */
 class EterUsers
@@ -51,7 +45,7 @@ class EterUsers
     private $user_password;
 
     /**
-     * @ORM\Column(type="string)
+     * @ORM\Column(type="string")
      * @var string
      */
     private $user_address;
@@ -119,7 +113,7 @@ class EterUsers
     private ArrayCollection $user_game;
 
     /**
-     * @ORM\ManyToMany(targetEntity="EterStreamSuppot", inversedBy="users")
+     * @ORM\ManyToMany(targetEntity="EterStreamSupport", inversedBy="users")
      */
     private ArrayCollection $user_stream;
 

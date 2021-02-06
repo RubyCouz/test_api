@@ -1,8 +1,6 @@
 <?php
 
 
-namespace data;
-
 use Cassandra\Date;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -86,7 +84,10 @@ class EterClan
 
     /**
      * @ORM\ManyToMany(targetEntity="EterEvent", inversedBy="clan")
-     * @ORM\JoinTable(name="clan_event")
+     * @ORM\JoinTable(name="clan_event",
+     * joinColumns={@ORM\JoinColumn(name="clan_id", referencedColumnName="clan_id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="event_id", referencedColumnName="event_id")}
+     * )
      */
     private ArrayCollection $event;
 

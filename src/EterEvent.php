@@ -1,7 +1,6 @@
 <?php
 
 
-namespace data;
 
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -12,7 +11,7 @@ use GraphQL\Utils\Utils;
  * Class EterEvent
  * @package data
  * @ORM\Entity
- * @ORM\Table(name="eter_event')
+ * @ORM\Table(name="eter_event")
  */
 class EterEvent
 {
@@ -25,33 +24,33 @@ class EterEvent
     private $event_id;
 
     /**
-     * @ORM\Column(type=string)
+     * @ORM\Column(type="string")
      * @var string
      */
     private $event_name;
 
     /**
-     * @ORM\Column(type=datetime)
+     * @ORM\Column(type="datetime")
      * @var Datetime
      */
     private $event_date;
 
     /**
-     * @ORM\Column(type=string)
+     * @ORM\Column(type="string")
      * @var string
      */
     private $event_score;
 
     /**
-     * @ORM\Column(type=datetime)
+     * @ORM\Column(type="datetime")
      * @var DateTime
      */
     private $event_creation;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="EterClan", mappedBy="event")
-     */
-    private ArrayCollection $clan;
+//    /**
+//     * @ORM\ManyToMany(targetEntity="EterClan", mappedBy="event")
+//     */
+//    private ArrayCollection $clan;
 
     /**
      * @var ArrayCollection
@@ -61,7 +60,7 @@ class EterEvent
     public function __construct(array $data)
     {
         $this->participant = new ArrayCollection();
-        $this->clan = new ArrayCollection();
+//        $this->clan = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

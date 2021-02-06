@@ -1,7 +1,6 @@
 <?php
 
 
-namespace data;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
@@ -30,7 +29,7 @@ class EterMember
     private $member_inscr;
 
     /**
-     * @ORM\ManyToOne(targetEntity="EterUser", inversedBy="member")
+     * @ORM\ManyToOne(targetEntity="EterUsers", inversedBy="member")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
      */
     private $user;

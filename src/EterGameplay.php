@@ -1,19 +1,17 @@
 <?php
 
 
-namespace data;
-
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
 /**
- * Class EterStreamSupport
+ * Class EterGameplay
  * @package data
  * @ORM\Entity
- * @ORM\Table(name="eter_stream_support")
+ * @ORM\Table(name="eter_gameplay")
  */
-class EterStreamSupport
+class EterGameplay
 {
     /**
      * @var int
@@ -21,22 +19,22 @@ class EterStreamSupport
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $support_id;
+    private $gameplay_id;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private $support_name;
+    private $gameplay_type;
 
     /**
-     * @ORM\ManyToMany(targetEntity="EterUSers", mappedBy="user_stream")
+     * @ORM\ManyToMany(targetEntity="EterClan", mappedBy="gameplay")
      */
-    private ArrayCollection $users;
+    private ArrayCollection $clan;
 
     public function __construct(array $data)
     {
-        $this->users = new ArrayCollection();
+        $this->clan = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

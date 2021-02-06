@@ -1,43 +1,41 @@
 <?php
 
 
-namespace data;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
 /**
- * Class EterFunction
+ * Class EterGender
  * @package data
  * @ORM\Entity
- * @ORM\Table(name="eter_function")
+ * @ORM\Table(name="eter_gender")
  */
-class EterFunction
+class EterGender
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column (type="eter_function")
+     * @ORM\Column(type="integer")
      * @var int
      */
-    private $function_id;
+    private $gender_id;
 
     /**
      * @ORM\Column(type="string")
      * @var string
      */
-    private $function_name;
+    private $gender_name;
 
     /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="EterParticipant", mappedBy="function")
+     * @ORM\ManyToMany(targetEntity="EterGame", mappedBy="game_gender")
      */
-    private ArrayCollection $participant;
+    private ArrayCollection $games;
 
     public function __construct(array $data)
     {
-        $this->participant = new ArrayCollection();
+        $this->games = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

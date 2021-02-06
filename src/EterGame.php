@@ -1,7 +1,6 @@
 <?php
 
 
-namespace data;
 
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -62,7 +61,7 @@ class EterGame
     private $game_gender;
 
     /**
-     * @ORM\ManyToMany(targetEntity="EterPlatform", inversedBy="games")
+     * @ORM\ManyToMany(targetEntity="EterPlateform", inversedBy="games")
      * @ORM\JoinTable(name="game_plateform")
      */
     private ArrayCollection $game_plateform;

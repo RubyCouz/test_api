@@ -1,7 +1,6 @@
 <?php
 
 
-namespace data;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -25,7 +24,7 @@ class EterGrade
 
     /**
      * @var string
-     * @ORM\Column(type="string)
+     * @ORM\Column(type="string")
      */
     private $grade_name;
 
