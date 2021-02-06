@@ -74,15 +74,15 @@ class EterClan
     private $clan_activity;
 
     /**
-     * @ORM\ManyToMany(targetEntity="EterGame", mappedBy="game_clan")
-     */
-    private $games;
-
-    /**
      * @var DateTime
      * @ORM\Column(type="datetime")
      */
     private $clan_update;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="EterGame", mappedBy="game_clan")
+     */
+    private $games;
 
     /**
      * @ORM\ManyToMany(targetEntity="EterEvent", inversedBy="clan")
@@ -96,8 +96,14 @@ class EterClan
      */
     private ArrayCollection $gameplay;
 
+    /**
+     * @ORM\OneToMany(targetEntity="EterMember", mappedBy="clan")
+     */
+    private ArrayCollection $member;
+
     public function __construct(array $data)
     {
+        $this->member = new ArrayCollection();
         $this->gameplay = new ArrayCollection();
         $this->event = new ArrayCollection();
         Utils::assign($this, $data);

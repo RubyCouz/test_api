@@ -35,6 +35,25 @@ class EterParticipant
      */
     private $part_winner;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="EterUsers", inversedBy="participant")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="EterEvent", inversedBy="participant")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="event_id")
+     */
+    private $event;
+
+    /**
+     * @@ORM\ManyToOne(targetEntity="EterFunction", inversedBy="participant")
+     * @ORM\JoinColumn(name="function_id", referencedColumnName="function_id")
+     */
+    private $function;
+
+
     public function __construct(array $data)
     {
         Utils::assign($this, $data);

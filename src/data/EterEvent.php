@@ -53,8 +53,14 @@ class EterEvent
      */
     private ArrayCollection $clan;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="EterParticipant", mappedBy="event")
+     */
+    private ArrayCollection $participant;
     public function __construct(array $data)
     {
+        $this->participant = new ArrayCollection();
         $this->clan = new ArrayCollection();
         Utils::assign($this, $data);
     }

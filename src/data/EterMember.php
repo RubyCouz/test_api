@@ -29,6 +29,23 @@ class EterMember
      */
     private $member_inscr;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="EterUser", inversedBy="member")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="EterGrade", inversedBy="member")
+     * @ORM\JoinColumn(name="grade_id", referencedColumnName="grade_id")
+     */
+    private $grade;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="EterClan", inversedBy="member")
+     * @ORM\JoinColumn(name="clan_id", referencedColumnName="clan_id")
+     */
+    private $clan;
 
     public function __construct(array $data)
     {

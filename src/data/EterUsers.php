@@ -123,8 +123,32 @@ class EterUsers
      */
     private ArrayCollection $user_stream;
 
+    /**
+     * @ORM\OneToMany(targetEntity="EterComment", mappedBy="user")
+     */
+    private ArrayCollection $comment;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EterContent", mappedBy="user")
+     */
+    private ArrayCollection $content;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EterMember", mappedBy="user")
+     */
+    private ArrayCollection $member;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EterParticipant", mappedBy="user")
+     */
+    private ArrayCollection $participant;
+
     public function __construct(array $data)
     {
+        $this->participant = new ArrayCollection();
+        $this->member = new ArrayCollection();
+        $this->content = new ArrayCollection();
+        $this->comment = new ArrayCollection();
         $this->user_stream = new ArrayCollection();
         $this->user_game = new ArrayCollection();
         $this->user_label = new ArrayCollection();

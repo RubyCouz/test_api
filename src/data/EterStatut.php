@@ -3,6 +3,7 @@
 
 namespace data;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
@@ -28,8 +29,14 @@ class EterStatut
      */
     private $statut_state;
 
+    /**
+     * @ORM\OneToMany(targetEntity="EterContent", mappedBy="statut")
+     */
+    private ArrayCollection $content;
+
     public function __construct(array $data)
     {
+        $this->content = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

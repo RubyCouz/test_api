@@ -40,8 +40,14 @@ class EterCategorie
      */
     private ArrayCollection $cat_children;
 
+    /**
+     * @ORM\OneToMany(targetEntity="EterContent", mappedBy="cat")
+     */
+    private ArrayCollection $content;
+
     public function __construct(array $data)
     {
+        $this->content = new ArrayCollection();
         $this->cat_children = new ArrayCollection();
         Utils::assign($this, $data);
     }

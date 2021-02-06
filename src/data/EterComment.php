@@ -39,6 +39,19 @@ class EterComment
      * @ORM\OneToMany(targetEntity="EterComment", mappedBy="com_parent")
      */
     private ArrayCollection $com_children;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="EterUsers", inversedBy="comment")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="EterContent", inversedBy="comment")
+     * @ORM\JoinColumn(name="content_id", referencedColumnName="content_id")
+     */
+    private $content;
+
     public function __construct(array $data)
     {
         $this->com_children = new ArrayCollection();

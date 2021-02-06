@@ -3,6 +3,7 @@
 
 namespace data;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
@@ -28,8 +29,15 @@ class EterFunction
      */
     private $function_name;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="EterParticipant", mappedBy="function")
+     */
+    private ArrayCollection $participant;
+
     public function __construct(array $data)
     {
+        $this->participant = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

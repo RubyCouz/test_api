@@ -65,7 +65,7 @@ class EterGame
      * @ORM\ManyToMany(targetEntity="EterPlatform", inversedBy="games")
      * @ORM\JoinTable(name="game_plateform")
      */
-    private $game_plateform;
+    private ArrayCollection $game_plateform;
 
     /**
      * @ORM\ManyToMany(targetEntity="EterClan", inversedBy="games")

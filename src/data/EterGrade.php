@@ -3,6 +3,7 @@
 
 namespace data;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
@@ -28,8 +29,14 @@ class EterGrade
      */
     private $grade_name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="EterMember", mappedBy="grade")
+     */
+    private ArrayCollection $member;
+
     public function __construct(array $data)
     {
+        $this->member = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }
