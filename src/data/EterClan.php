@@ -73,11 +73,27 @@ class EterClan
     private $clan_activity;
 
     /**
+     * @ORM\ManyToMany(targetEntity="EterGame", mappedBy="game_clan")
+     */
+    private $games;
+
+    /**
      * @var DateTime
      * @ORM\Column(type="datetime")
      */
     private $clan_update;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="EterEvent", inversedBy="clan")
+     * @ORM\JoinTable(name="clan_event")
+     */
+    private $event;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="EterGameplay", inversedBy="clan")
+     * @ORM\JoinTable(name="clan_gameplay")
+     */
+    private $gameplay;
 
     public function __construct(array $data)
     {

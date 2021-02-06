@@ -47,6 +47,11 @@ class EterEvent
      */
     private $event_creation;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="EterClan", mappedBy="event")
+     */
+    private $clan;
+
     public function __construct(array $data)
     {
         Utils::assign($this, $data);

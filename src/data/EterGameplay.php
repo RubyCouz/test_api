@@ -28,6 +28,10 @@ class EterGameplay
      */
     private $gameplay_type;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="EterClan", mappedBy="gameplay")
+     */
+    private $clan;
 
     public function __construct(array $data)
     {

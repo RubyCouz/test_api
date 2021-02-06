@@ -1,4 +1,5 @@
 <?php
+
 namespace data;
 
 use DateTime;
@@ -6,6 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
 /**
+ * @UniqueEntity(
+ *    fields = {"user_mail"},
+ *    message = "L'email existe déjà"
+ * )
  * @ORM\Entity
  * @ORM\Table(name="eter_users)
  * Class EterUsers
@@ -97,6 +102,25 @@ class EterUsers
      * @var string
      */
     private $user_avatar;
+
+//    relations
+
+    /**
+     * @ORM\ManyToMany(targetEntity="EterLabel", inversedBy="users")
+     * @ORM\JoinTable(name="users_label")
+     */
+    private $user_label;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="EterGame", inversedBy="users")
+     * @ORM\JoinTable(name="users-game")
+     */
+    private $user_game;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="EterStreamSuppot", inversedBy="users")
+     */
+    private $user_stream;
 
     public function __construct(array $data)
     {

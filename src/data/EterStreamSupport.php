@@ -28,6 +28,10 @@ class EterStreamSupport
      */
     private $support_name;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="EterUSers", mappedBy="user_stream")
+     */
+    private $users;
 
     public function __construct(array $data)
     {

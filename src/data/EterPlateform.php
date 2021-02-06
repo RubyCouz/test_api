@@ -28,6 +28,11 @@ class EterPlateform
      */
     private $plateform_name;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="EterGame", mappedBy="game_plateform")
+     */
+    private $games;
+
     public function __construct(array $data)
     {
         Utils::assign($this, $data);

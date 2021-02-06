@@ -54,6 +54,29 @@ class EterGame
      */
     private $game_update;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="EterGender", inversedBy="games")
+     * @ORM\JoinTable(name="game_gender")
+     */
+    private $game_gender;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="EterPlatform", inversedBy="games")
+     * @ORM\JoinTable(name="game_plateform")
+     */
+    private $game_plateform;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="EterClan", inversedBy="games")
+     * @ORM\JoinTable(name="game_clan")
+     */
+    private $game_clan;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="EterUsers", mappedBy="user_game")
+     */
+    private $users;
+
     public function __construct(array $data)
     {
         Utils::assign($this, $data);

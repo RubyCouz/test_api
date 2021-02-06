@@ -27,6 +27,11 @@ class EterLabel
      */
     private $label_name;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="EterUser", mappedBy="user_label")
+     */
+    private $users;
+
     public function __construct(array $data)
     {
         Utils::assign($this, $data);
