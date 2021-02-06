@@ -47,7 +47,7 @@ class EterParticipant
     private $event;
 
     /**
-     * @@ORM\ManyToOne(targetEntity="EterFunction", inversedBy="participant")
+     * @ORM\ManyToOne(targetEntity="EterFunction", inversedBy="participant")
      * @ORM\JoinColumn(name="function_id", referencedColumnName="id")
      */
     private $function;
