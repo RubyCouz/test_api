@@ -68,15 +68,6 @@ class Types
         return $type;
     }
 
-    /**
-     * @param $name
-     * @param null $objectKey
-     * @return array
-     */
-    public static function htmlField($name, $objectKey = null)
-    {
-        return HtmlField::build($name, $objectKey);
-    }
 
 
 

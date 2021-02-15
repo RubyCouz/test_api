@@ -2,6 +2,7 @@
 namespace EterelzApi\Type;
 
 use EterelzApi\Types;
+use EterelzApi\Data\EterUsers as User;
 use GraphQL\Type\Definition\InterfaceType;
 
 class NodeType extends InterfaceType

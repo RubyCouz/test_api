@@ -49,7 +49,7 @@ class QueryType extends ObjectType
 
     public function user($rootValue, $args)
     {
-        return $entityManager->getRepository('EterUser')->find($args['id']);
+        return $entityManager->getRepository('EterelzApi\Data\EterUsers')->find($args['id']);
     }
 
     public function viewer($rootValue, $args, AppContext $context)

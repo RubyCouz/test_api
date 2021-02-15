@@ -2,8 +2,7 @@
 namespace EterelzApi\Type;
 
 use EterelzApi\AppContext;
-//use GraphQL\Examples\Blog\Data\DataSource;
-//use GraphQL\Examples\Blog\Data\User;
+use EterelzApi\Data\EterUsers as User;
 use EterelzApi\Types;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ResolveInfo;
@@ -34,6 +33,16 @@ class UserType extends ObjectType
             }
         ];
         parent::__construct($config);
+    }
+
+    public function resolveId(User $user)
+    {
+        return $user->getId();
+    }
+
+    public function resolveEmail(User $user)
+    {
+        return $user->getUserMail();
     }
 
 }
