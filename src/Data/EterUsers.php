@@ -155,5 +155,15 @@ class EterUsers
         $this->user_label = new ArrayCollection();
         Utils::assign($this, $data);
     }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+    
+    public function getUserMail(): ?string
+    {
+        return $this->user_mail;
+    }
 }
 
