@@ -1,0 +1,25 @@
+<?php
+namespace EterelzApi;
+
+use EterelzApi\Data\EterUsers;
+
+/**
+ * Instance available in all GraphQL resolvers as 3rd argument
+ */
+class AppContext
+{
+    /*
+      @var string
+     */
+    public $rootUrl;
+
+    /*
+      @var EterUsers
+     */
+    public $viewer;
+
+    /*
+      @var \mixed
+     */
+    public $request;
+}
