@@ -1,4 +1,5 @@
 <?php
+namespace EterelzApi\Data;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -6,31 +7,31 @@ use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
 /**
- * Class EterStreamSupport
+ * Class EterLabel
  * @package data
+ * @ORM\Table(name="eter_label")
  * @ORM\Entity
- * @ORM\Table(name="eter_stream_support")
  */
-class EterStreamSupport
+class EterLabel
 {
     /**
-     * @var int
      * @ORM\Id
-     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
+     * @var int
      */
     private $id;
 
     /**
-     * @var string
      * @ORM\Column(type="string")
+     * @var string
      */
-    private $support_name;
+    private $label_name;
 
 //    /**
-//     * @ORM\ManyToMany(targetEntity="EterUSers", mappedBy="user_stream")
+//     * @ORM\ManyToMany(targetEntity="EterUsers", mappedBy="user_label")
 //     */
-//    private ArrayCollection $users;
+//    private $users;
 
     public function __construct(array $data)
     {

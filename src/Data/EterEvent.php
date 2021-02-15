@@ -1,5 +1,5 @@
 <?php
-
+namespace EterelzApi\Data;
 
 
 use DateTime;
@@ -50,13 +50,13 @@ class EterEvent
 //    /**
 //     * @ORM\ManyToMany(targetEntity="EterClan", mappedBy="event")
 //     */
-//    private ArrayCollection $clan;
+//    private $clan;
 
     /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="EterParticipant", mappedBy="event")
      */
-    private ArrayCollection $participant;
+    private $participant;
     public function __construct(array $data)
     {
         $this->participant = new ArrayCollection();

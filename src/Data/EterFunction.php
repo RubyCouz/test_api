@@ -1,5 +1,5 @@
 <?php
-
+namespace EterelzApi\Data;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -32,7 +32,7 @@ class EterFunction
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="EterParticipant", mappedBy="function")
      */
-    private ArrayCollection $participant;
+    private $participant;
 
     public function __construct(array $data)
     {

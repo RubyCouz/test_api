@@ -1,4 +1,6 @@
 <?php
+namespace EterelzApi\Data;
+
 
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -6,35 +8,35 @@ use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
 /**
- * Class EterGameplay
+ * Class EterPlateform
  * @package data
  * @ORM\Entity
- * @ORM\Table(name="eter_gameplay")
+ * @ORM\Table(name="eter_plateform")
  */
-class EterGameplay
+class EterPlateform
 {
     /**
-     * @var int
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
 
     /**
-     * @var string
      * @ORM\Column(type="string")
+     * @var string
      */
-    private $gameplay_type;
+    private $plateform_name;
 
 //    /**
-//     * @ORM\ManyToMany(targetEntity="EterClan", mappedBy="gameplay")
+//     * @ORM\ManyToMany(targetEntity="EterGame", mappedBy="game_plateform")
 //     */
-//    private ArrayCollection $clan;
+//    private $games;
 
     public function __construct(array $data)
     {
-//        $this->clan = new ArrayCollection();
+//        $this->games = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

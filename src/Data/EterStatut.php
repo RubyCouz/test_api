@@ -1,5 +1,5 @@
 <?php
-
+namespace EterelzApi\Data;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -7,35 +7,35 @@ use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
 /**
- * Class EterGrade
- * @package data
  * @ORM\Entity
- * @ORM\Table(name="eter_grade")
+ * @ORM\Table(name="eter_statut")
+ * Class EterStatut
+ * @package data
  */
-class EterGrade
+class EterStatut
 {
     /**
-     * @var int
      * @ORM\Id
-     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
+     * @var int
      */
     private $id;
 
     /**
-     * @var string
      * @ORM\Column(type="string")
+     * @var string
      */
-    private $grade_name;
+    private $statut_state;
 
     /**
-     * @ORM\OneToMany(targetEntity="EterMember", mappedBy="grade")
+     * @ORM\OneToMany(targetEntity="EterContent", mappedBy="statut")
      */
-    private ArrayCollection $member;
+    private $content;
 
     public function __construct(array $data)
     {
-        $this->member = new ArrayCollection();
+        $this->content = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

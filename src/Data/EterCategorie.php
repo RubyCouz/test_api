@@ -1,6 +1,6 @@
 <?php
 
-
+namespace EterelzApi\Data;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -37,12 +37,12 @@ class EterCategorie
     /**
      * @ORM\OneToMany(targetEntity="EterCategorie", mappedBy="cat_parent")
      */
-    private ArrayCollection $cat_children;
+    private $cat_children;
 
     /**
      * @ORM\OneToMany(targetEntity="EterContent", mappedBy="cat")
      */
-    private ArrayCollection $content;
+    private $content;
 
     public function __construct(array $data)
     {

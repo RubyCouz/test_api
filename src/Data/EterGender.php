@@ -1,5 +1,5 @@
 <?php
-
+namespace EterelzApi\Data;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -7,17 +7,17 @@ use Doctrine\ORM\Mapping as ORM;
 use GraphQL\Utils\Utils;
 
 /**
- * Class EterLabel
+ * Class EterGender
  * @package data
- * @ORM\Table(name="eter_label")
  * @ORM\Entity
+ * @ORM\Table(name="eter_gender")
  */
-class EterLabel
+class EterGender
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      * @var int
      */
     private $id;
@@ -26,16 +26,16 @@ class EterLabel
      * @ORM\Column(type="string")
      * @var string
      */
-    private $label_name;
+    private $gender_name;
 
 //    /**
-//     * @ORM\ManyToMany(targetEntity="EterUsers", mappedBy="user_label")
+//     * @ORM\ManyToMany(targetEntity="EterGame", mappedBy="game_gender")
 //     */
-//    private ArrayCollection $users;
+//    private $games;
 
     public function __construct(array $data)
     {
-//        $this->users = new ArrayCollection();
+//        $this->games = new ArrayCollection();
         Utils::assign($this, $data);
     }
 }

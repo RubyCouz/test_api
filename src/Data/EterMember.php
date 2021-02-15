@@ -1,5 +1,5 @@
 <?php
-
+namespace EterelzApi\Data;
 
 
 use DateTime;

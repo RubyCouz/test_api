@@ -1,5 +1,5 @@
 <?php
-
+namespace EterelzApi\Data;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -106,7 +106,7 @@ class EterUsers
      * joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="label_id", referencedColumnName="id")})
      */
-    private ArrayCollection $user_label;
+    private $user_label;
 
     /**
      * @ORM\ManyToMany(targetEntity="EterGame", inversedBy="users")
@@ -114,7 +114,7 @@ class EterUsers
      * joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="game_id", referencedColumnName="id")})
      */
-    private ArrayCollection $user_game;
+    private $user_game;
 
     /**
      * @ORM\ManyToMany(targetEntity="EterStreamSupport", inversedBy="users")
@@ -122,27 +122,27 @@ class EterUsers
      * joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="support_id", referencedColumnName="id")})
      */
-    private ArrayCollection $user_stream;
+    private $user_stream;
 
     /**
      * @ORM\OneToMany(targetEntity="EterComment", mappedBy="user")
      */
-    private ArrayCollection $comment;
+    private $comment;
 
     /**
      * @ORM\OneToMany(targetEntity="EterContent", mappedBy="user")
      */
-    private ArrayCollection $content;
+    private $content;
 
     /**
      * @ORM\OneToMany(targetEntity="EterMember", mappedBy="user")
      */
-    private ArrayCollection $member;
+    private $member;
 
     /**
      * @ORM\OneToMany(targetEntity="EterParticipant", mappedBy="user")
      */
-    private ArrayCollection $participant;
+    private $participant;
 
     public function __construct(array $data)
     {

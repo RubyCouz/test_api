@@ -1,5 +1,5 @@
 <?php
-
+namespace EterelzApi\Data;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -37,7 +37,7 @@ class EterComment
     /**
      * @ORM\OneToMany(targetEntity="EterComment", mappedBy="com_parent")
      */
-    private ArrayCollection $com_children;
+    private $com_children;
 
     /**
      * @ORM\ManyToOne(targetEntity="EterUsers", inversedBy="comment")

@@ -1,5 +1,5 @@
 <?php
-
+namespace EterelzApi\Data;
 
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -55,7 +55,7 @@ class EterContent
     /**
      * @ORM\OneToMany(targetEntity="EterComment", mappedBy="content")
      */
-    private ArrayCollection $comment;
+    private $comment;
 
     /**
      * @ORM\ManyToOne(targetEntity="EterUsers", inversedBy="content")

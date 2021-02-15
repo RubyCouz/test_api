@@ -1,5 +1,5 @@
 <?php
-
+namespace EterelzApi\Data;
 
 use Cassandra\Date;
 use DateTime;
@@ -93,7 +93,7 @@ class EterClan
      *     inverseJoinColumns={@ORM\JoinColumn(name="event_id", referencedColumnName="id")}
      * )
      */
-    private ArrayCollection $event;
+    private $event;
 
     /**
      * @ORM\ManyToMany(targetEntity="EterGameplay", inversedBy="clan")
@@ -102,12 +102,12 @@ class EterClan
      *     inverseJoinColumns={@ORM\JoinColumn(name="gameplay_id", referencedColumnName="id")}
      *     )
      */
-    private ArrayCollection $gameplay;
+    private $gameplay;
 
     /**
      * @ORM\OneToMany(targetEntity="EterMember", mappedBy="clan")
      */
-    private ArrayCollection $member;
+    private $member;
 
     public function __construct(array $data)
     {

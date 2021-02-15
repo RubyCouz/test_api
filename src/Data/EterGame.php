@@ -1,5 +1,5 @@
 <?php
-
+namespace EterelzApi\Data;
 
 
 use DateTime;
@@ -69,18 +69,18 @@ class EterGame
      *     inverseJoinColumns={@ORM\JoinColumn(name="plateform_id", referencedColumnName="id")}
      *     )
      */
-    private ArrayCollection $game_plateform;
+    private $game_plateform;
 
 //    /**
 //     * @ORM\ManyToMany(targetEntity="EterClan", inversedBy="games")
 //     * @ORM\JoinTable(name="game_clan")
 //     */
-//    private ArrayCollection $game_clan;
+//    private $game_clan;
 
 //    /**
 //     * @ORM\ManyToMany(targetEntity="EterUsers", mappedBy="user_game")
 //     */
-//    private ArrayCollection $users;
+//    private $users;
 
     public function __construct(array $data)
     {
