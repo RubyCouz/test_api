@@ -8,53 +8,45 @@ require_once __DIR__ . '/vendor/autoload.php';
 // Data
 require_once "bootstrap.php";
 
+use EterelzApi;
 use EterelzApi\Type\QueryType;
 use EterelzApi\Types;
-use EterelzApi\AppContext;
-use EterelzApi\Data\EterUsers;
 
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Schema;
 use GraphQL\Server\StandardServer;
 
+
 try {
-    $queryType = new ObjectType([
+    /*$queryType = new ObjectType([
         'name' => 'Query',
         'fields' => [
-            'echo' => [
+            'users' => [
                 'type' => Type::string(),
                 'args' => [
-                    'message' => ['type' => Type::string()],
+                    'id' => ['type' => Type::id()],
                 ],
                 'resolve' => function ($rootValue, $args) {
-                    return $rootValue['prefix'] . $args['message'];
+                    //EterelzApi\Data\EterUsers
+                    //$email = $entityManager->getRepository('EterelzApi\Data\EterUsers')->find(1)->getUserMail();
+                    $email = "nain";
+                    var_dump($entityManager->getRepository('EterelzApi\Data\EterUsers')->find(1)->getUserMail());
+                    return $email;
                 }
             ],
         ],
     ]);
+    */
 
-    $mutationType = new ObjectType([
-        'name' => 'Calc',
-        'fields' => [
-            'sum' => [
-                'type' => Type::int(),
-                'args' => [
-                    'x' => ['type' => Type::int()],
-                    'y' => ['type' => Type::int()],
-                ],
-                'resolve' => function ($calc, $args) {
-                    return $args['x'] + $args['y'];
-                },
-            ],
-        ],
-    ]);
 
     // See docs on schema options:
     // http://webonyx.github.io/graphql-php/type-system/schema/#configuration-options
     $schema = new Schema([
-        'query' => $queryType,
-        'mutation' => $mutationType,
+        'query' => new QueryType(),
+        'typeLoader' => function($name) {
+            return Types::byTypeName($name, true);
+        }
     ]);
 
     // See docs on server options:
