@@ -1,10 +1,15 @@
 <?php
 namespace EterelzApi;
 
+use EterelzApi\Type\NodeType;
 use Exception;
 use EterelzApi\Type\UserType;
+use GraphQL\Type\Definition\FloatType;
+use GraphQL\Type\Definition\IDType;
+use GraphQL\Type\Definition\IntType;
 use GraphQL\Type\Definition\ListOfType;
 use GraphQL\Type\Definition\NonNull;
+use GraphQL\Type\Definition\StringType;
 use GraphQL\Type\Definition\Type;
 
 /**
@@ -19,6 +24,7 @@ class Types
     const LAZY_LOAD_GRAPHQL_TYPES = true;
 
     public static function user() : callable { return static::get(UserType::class); }
+    public static function node() : callable { return static::get(NodeType::class); }
 
     public static function get($classname)
     {
@@ -79,7 +85,7 @@ class Types
     }
 
     /**
-     * @return \GraphQL\Type\Definition\FloatType
+     * @return FloatType
      */
     public static function float()
     {
@@ -87,7 +93,7 @@ class Types
     }
 
     /**
-     * @return \GraphQL\Type\Definition\IDType
+     * @return IDType
      */
     public static function id()
     {
@@ -95,7 +101,7 @@ class Types
     }
 
     /**
-     * @return \GraphQL\Type\Definition\IntType
+     * @return IntType
      */
     public static function int()
     {
@@ -103,7 +109,7 @@ class Types
     }
 
     /**
-     * @return \GraphQL\Type\Definition\StringType
+     * @return StringType
      */
     public static function string()
     {

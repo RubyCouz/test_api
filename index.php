@@ -20,7 +20,7 @@ use \GraphQL\Error\DebugFlag;
 
 // Disable default PHP error reporting - we have better one for debug mode (see below)
 ini_set('display_errors', 0);
-
+// debugage => affichage de message d'erreur format JSON
 $debug = DebugFlag::NONE;
 if (!empty($_GET['debug'])) {
     set_error_handler(function($severity, $message, $file, $line) use (&$phpErrors) {
@@ -30,7 +30,6 @@ if (!empty($_GET['debug'])) {
 }
 
 try {
-
     // Prepare context that will be available in all field resolvers (as 3rd argument):
     $appContext = new AppContext();
     $appContext->viewer = $entityManager->getRepository('EterelzApi\Data\EterUsers')->find(1); // simulated "currently logged-in user"
@@ -48,7 +47,12 @@ try {
     $data += ['query' => null, 'variables' => null];
 
     if (null === $data['query']) {
-        $data['query'] = '{hello}';
+        $data['query'] = '{
+        user(id: "1") {
+            id
+            email
+            }
+        }';
     }
      
     // GraphQL schema to be passed to query executor:
