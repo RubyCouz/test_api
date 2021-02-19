@@ -17,32 +17,23 @@ class UserType extends ObjectType
             'fields' => function() {
                 return [
                     'id' => Types::id(),
-                    'email' => Types::string(),
+                    'mail' => Types::string(),
+                    'login' => Types::string(),
+                    //"dateInscr" => Types::DateTime(),
+                    "address" => Types::string(),
                 ];
             },
             'interfaces' => [
                 Types::node()
             ],
             'resolveField' => function($user, $args, $context, ResolveInfo $info) {
-                $method = 'resolve' . ucfirst($info->fieldName);
-                if (method_exists($this, $method)) {
-                    return $this->{$method}($user, $args, $context, $info);
-                } else {
-                    return $user->{$info->fieldName};
+                $method = 'getUser' . ucfirst($info->fieldName);
+                if (method_exists($user, $method)) {
+                    return $user->{$method}($user, $args, $context, $info);
                 }
             }
         ];
         parent::__construct($config);
-    }
-
-    public function resolveId(User $user)
-    {
-        return $user->getId();
-    }
-
-    public function resolveEmail(User $user)
-    {
-        return $user->getUserMail();
     }
 
 }

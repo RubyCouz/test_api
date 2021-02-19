@@ -1,5 +1,6 @@
 <?php
 namespace EterelzApi\Type;
+
 use EterelzApi\AppContext;
 //use GraphQL\Examples\Blog\Data\DataSource;
 use EterelzApi\Types;
@@ -12,24 +13,21 @@ use GraphQL\Type\Definition\Type;
 class QueryType extends ObjectType
 {
     private $em;
-    
+
     public function __construct()
     {
         require "./bootstrap.php";
         $this->em = $entityManager;
+
         $config = [
             'name' => 'Query',
             'fields' => [
                 'user' => [
                     'type' => Types::user(),
-                    'description' => 'Returns user by id (in range of 1-5)',
+                    'description' => 'Returns user by id',
                     'args' => [
                         'id' => Types::nonNull(Types::id())
                     ]
-                ],
-                'viewer' => [
-                    'type' => Types::user(),
-                    'description' => 'Represents currently logged-in user (for the sake of example - simply returns user with id == 1)'
                 ],
                 'deprecatedField' => [
                     'type' => Types::string(),

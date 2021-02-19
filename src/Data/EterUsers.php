@@ -156,14 +156,30 @@ class EterUsers
         Utils::assign($this, $data);
     }
 
-    public function getId(): ?int
+    public function getUserId(): ?int
     {
         return $this->id;
+    }
+
+    public function getUserLogin(): ?string
+    {
+        return $this->user_login;
+    }
+
+    public function getUserDateInscr(): ?\DateTime
+    {
+        return $this->user_date_inscr;
     }
     
     public function getUserMail(): ?string
     {
         return $this->user_mail;
     }
+
+    public function getUserAddress(): ?string
+    {
+        return $this->user_address;
+    }
+    
 }
 
