@@ -144,7 +144,7 @@ class EterUsers
      */
     private $participant;
 
-    public function __construct(array $data)
+    public function __construct()
     {
         $this->participant = new ArrayCollection();
         $this->member = new ArrayCollection();
@@ -153,7 +153,7 @@ class EterUsers
         $this->user_stream = new ArrayCollection();
         $this->user_game = new ArrayCollection();
         $this->user_label = new ArrayCollection();
-        Utils::assign($this, $data);
+  
     }
 
     public function getUserId(): ?int
@@ -181,5 +181,32 @@ class EterUsers
         return $this->user_address;
     }
     
+    public function setUserLogin(string $user_login): self
+    {
+        $this->user_login = $user_login;
+
+        return $this;
+    }
+
+    public function setUserMail(string $user_mail): self
+    {
+        $this->user_mail = $user_mail;
+
+        return $this;
+    }
+
+    public function setUserPassword(string $user_password): self
+    {
+        $this->user_password = password_hash($user_password, PASSWORD_BCRYPT);
+
+        return $this;
+    }
+
+    public function setUserDateInscr() 
+    {
+        $this->user_date_inscr = new \DateTime('now');
+
+        return $this;
+    }
 }
 

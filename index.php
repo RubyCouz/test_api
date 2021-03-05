@@ -7,6 +7,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 require_once "bootstrap.php";
 
 use EterelzApi\Type\QueryType;
+use EterelzApi\Type\MutationType;
 use EterelzApi\Types;
 use EterelzApi\AppContext;
 use EterelzApi\Data\EterUsers;
@@ -60,7 +61,8 @@ try {
         'query' => new QueryType(),
         'typeLoader' => function($name) {
             return Types::byTypeName($name, true);
-        }
+        },
+        'mutation' => new MutationType()
     ]);
 
     $result = GraphQL::executeQuery(
