@@ -20,7 +20,7 @@ class UserType extends ObjectType
                     'mail' => Types::string(),
                     'login' => Types::string(),
                     //"dateInscr" => Types::DateTime(),
-                    "address" => Types::string(),
+                    'address' => Types::string(),
                 ];
             },
             'interfaces' => [
