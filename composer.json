@@ -3,7 +3,8 @@
         "doctrine/orm": "^2.6.2",
         "doctrine/dbal": "2.12.1",
         "webonyx/graphql-php": "^14.5",
-        "ext-json": "*"
+        "ext-json": "*",
+        "lcobucci/jwt": "^4.1"
     },
     "autoload": {
         "psr-4": {"EterelzApi\\": "src/"}
