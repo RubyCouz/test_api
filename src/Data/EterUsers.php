@@ -208,5 +208,12 @@ class EterUsers
 
         return $this;
     }
+
+    public function getConnect(string $password): ?bool
+    {
+        $hash = $this->user_password;
+
+        return password_verify($password, $hash);
+    }  
 }
 

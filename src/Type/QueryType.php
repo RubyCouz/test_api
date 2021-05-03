@@ -29,6 +29,14 @@ class QueryType extends ObjectType
                         'id' => Types::nonNull(Types::id())
                     ]
                 ],
+                'connect' => [
+                    'type' => Types::string(),
+                    'description' => 'Returns token',
+                    'args' => [
+                        'login' => Types::nonNull(Types::string()),
+                        'password' => Types::nonNull(Types::string())
+                    ]
+                ],
                 'deprecatedField' => [
                     'type' => Types::string(),
                     'deprecationReason' => 'This field is deprecated!'
@@ -77,5 +85,17 @@ class QueryType extends ObjectType
     public function deprecatedField()
     {
         return 'You can request deprecated field, but it is not displayed in auto-generated documentation by default.';
+    }
+
+    public function connect($rootValue, $args, AppContext $context)
+    {
+        $user = $this->em->getRepository('EterelzApi\Data\EterUsers')
+            ->findOneBy(array('user_mail' => $args['login']));
+        
+        $accountVerified = $user->getConnect($args['password']);
+
+        $badOrNotBad = $accountVerified ? "Connection possible":"Connection impossible";
+
+        return $badOrNotBad;
     }
 }
