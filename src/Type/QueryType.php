@@ -33,7 +33,7 @@ class QueryType extends ObjectType
                     'type' => Types::string(),
                     'description' => 'Returns token',
                     'args' => [
-                        'login' => Types::nonNull(Types::string()),
+                        'mail' => Types::nonNull(Types::string()),
                         'password' => Types::nonNull(Types::string())
                     ]
                 ],
@@ -90,7 +90,7 @@ class QueryType extends ObjectType
     public function connect($rootValue, $args, AppContext $context)
     {
         $user = $this->em->getRepository('EterelzApi\Data\EterUsers')
-            ->findOneBy(array('user_mail' => $args['login']));
+            ->findOneBy(array('user_mail' => $args['mail']));
         
         $accountVerified = $user->getConnect($args['password']);
 
