@@ -22,7 +22,7 @@ class MutationType extends ObjectType
             'name' => 'Mutation',
             'fields' => [
                 'RegisterAccount' => [
-                    'type' => Type::int(),
+                    'type' => Types::user(),
                     'args' => [
                         'mail' => ['type' => Type::string()],
                         'login' => ['type' => Type::string()],
@@ -40,7 +40,7 @@ class MutationType extends ObjectType
                         $this->em->persist($user);
                         $this->em->flush();
 
-                        return $user->getUserId();
+                        return $user;
                     },
                 ],
             ],
