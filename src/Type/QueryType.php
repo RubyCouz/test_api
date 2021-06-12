@@ -10,14 +10,19 @@ use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 
+//use Lcobucci\JWT\Configuration;
+
 class QueryType extends ObjectType
 {
     private $em;
+    private $configJWT;
 
     public function __construct()
     {
         require "./bootstrap.php";
         $this->em = $entityManager;
+        require "./src/JWT/ConfigJWT.php";
+        $this->configJWT = $configJWT;
 
         $config = [
             'name' => 'Query',
@@ -94,7 +99,20 @@ class QueryType extends ObjectType
         
         $accountVerified = $user->getConnect($args['password']);
 
-        $badOrNotBad = $accountVerified ? "Connection possible":"Connection impossible";
+        $badOrNotBad = "Connection impossible";
+
+        
+        //JWT
+        if ($accountVerified) {
+            $now = new \DateTimeImmutable();
+
+            $token = $this->configJWT->builder()
+                ->issuedBy('http://eterelz.fr/api')
+                ->issuedAt($now)
+                ->withHeader('foo', 'bar')
+                ->getToken($this->configJWT->signer(), $this->configJWT->signingKey());
+                $badOrNotBad = "Connection possible ". $token->toString();
+        }
 
         return $badOrNotBad;
     }
