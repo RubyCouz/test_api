@@ -106,12 +106,36 @@ class QueryType extends ObjectType
         if ($accountVerified) {
             $now = new \DateTimeImmutable();
 
+            //Création du JWT
             $token = $this->configJWT->builder()
                 ->issuedBy('http://eterelz.fr/api')
                 ->issuedAt($now)
                 ->withHeader('foo', 'bar')
                 ->getToken($this->configJWT->signer(), $this->configJWT->signingKey());
-                $badOrNotBad = "Connection possible ". $token->toString();
+
+            //Cookie authentification
+            $jwtHP = $token->headers()->toString() . "." . $token->claims()->toString();
+            setcookie('jwt_hp',$jwtHP , [
+                'expires' => strtotime( '+30 days' ),
+                'path' => '/',
+                'domain' => '',
+                'secure' => false,
+                'httponly' => false,
+                'samesite' =>'Lax',
+            ]);
+
+            $jwtS = $token->signature()->toString();
+            setcookie('jwt_s',$jwtS , [
+                'expires' => strtotime( '+30 days' ),
+                'path' => '/',
+                'domain' => '',
+                'secure' => false,
+                'httponly' => true,
+                'samesite' =>'Lax',
+            ]);
+
+
+            $badOrNotBad = 'Connection possible '. $token->toString();
         }
 
         return $badOrNotBad;
