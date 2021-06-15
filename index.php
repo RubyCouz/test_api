@@ -46,16 +46,7 @@ try {
     }
 
     $data += ['query' => null, 'variables' => null];
-
-    if (null === $data['query']) {
-        $data['query'] = '{
-        user(id: "1") {
-            id
-            email
-            }
-        }';
-    }
-     
+    
     // GraphQL schema to be passed to query executor:
     $schema = new Schema([
         'query' => new QueryType(),
