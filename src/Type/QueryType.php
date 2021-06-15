@@ -21,8 +21,10 @@ class QueryType extends ObjectType
     {
         require "./bootstrap.php";
         $this->em = $entityManager;
+
         require "./src/JWT/ConfigJWT.php";
         $this->configJWT = $configJWT;
+
 
         $config = [
             'name' => 'Query',
@@ -105,18 +107,22 @@ class QueryType extends ObjectType
         //JWT
         if ($accountVerified) {
             $now = new \DateTimeImmutable();
+            $validateTime = '+5 days';
 
             //Création du JWT
             $token = $this->configJWT->builder()
-                ->issuedBy('http://eterelz.fr/api')
-                ->issuedAt($now)
-                ->withHeader('foo', 'bar')
+                ->issuedBy( 'http://eterelz.fr/api' )
+                ->issuedAt( $now )
+                ->expiresAt( $now->modify( $validateTime ) )
+                ->withClaim('id', $user->getUserId())
+                ->withClaim('username', $user->getUserLogin())
+                ->withClaim('roles', ['utilisateur'])
                 ->getToken($this->configJWT->signer(), $this->configJWT->signingKey());
 
             //Cookie authentification
             $jwtHP = $token->headers()->toString() . "." . $token->claims()->toString();
             setcookie('jwt_hp',$jwtHP , [
-                'expires' => strtotime( '+30 days' ),
+                'expires' => strtotime( $validateTime ),
                 'path' => '/',
                 'domain' => '',
                 'secure' => false,
@@ -126,7 +132,7 @@ class QueryType extends ObjectType
 
             $jwtS = $token->signature()->toString();
             setcookie('jwt_s',$jwtS , [
-                'expires' => strtotime( '+30 days' ),
+                'expires' => strtotime( $validateTime ),
                 'path' => '/',
                 'domain' => '',
                 'secure' => false,
@@ -135,8 +141,9 @@ class QueryType extends ObjectType
             ]);
 
 
-            $badOrNotBad = 'Connection possible '. $token->toString();
+            $badOrNotBad = 'Connection possible '. var_dump($_COOKIE);
         }
+
 
         return $badOrNotBad;
     }

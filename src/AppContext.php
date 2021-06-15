@@ -1,7 +1,7 @@
 <?php
 namespace EterelzApi;
 
-use EterelzApi\Data\EterUsers;
+use EterelzApi\JWT\UsersJWT;
 
 /**
  * Instance available in all GraphQL resolvers as 3rd argument
@@ -14,7 +14,7 @@ class AppContext
     public $rootUrl;
 
     /*
-      @var EterUsers
+      @var UsersJWT
      */
     public $viewer;
 

@@ -12,6 +12,7 @@ use EterelzApi\Types;
 use EterelzApi\AppContext;
 use EterelzApi\Data\EterUsers;
 
+use EterelzApi\JWT\UsersJWT;
 
 use \GraphQL\Type\Schema;
 use \GraphQL\GraphQL;
@@ -33,7 +34,7 @@ if (!empty($_GET['debug'])) {
 try {
     // Prepare context that will be available in all field resolvers (as 3rd argument):
     $appContext = new AppContext();
-    $appContext->viewer = $entityManager->getRepository('EterelzApi\Data\EterUsers')->find(1); // simulated "currently logged-in user"
+    $appContext->viewer = new UsersJWT(); // simulated "currently logged-in user"
     $appContext->rootUrl = 'http://localhost:8080';
     $appContext->request = $_REQUEST;
 
